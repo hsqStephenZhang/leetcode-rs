@@ -6,7 +6,7 @@ impl Solution {
     pub fn min_operations(nums: Vec<i32>, x: i32) -> i32 {
         let size = nums.len();
         let mut max_range = -1;
-        let (mut sumed, sum) = Self::to_sum(nums);
+        let (sumed, sum) = Self::to_sum(nums);
         let target = sum - x;
         if target < 0 {
             return -1;
@@ -40,6 +40,7 @@ impl Solution {
         };
     }
 
+    #[allow(dead_code)]
     fn to_sum(nums: Vec<i32>) -> (Vec<i32>, i32) {
         let mut res = Vec::with_capacity(nums.len() + 1);
         let mut sum = 0;
