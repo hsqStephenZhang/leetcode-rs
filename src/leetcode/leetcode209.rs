@@ -2,39 +2,25 @@ struct Solution;
 
 impl Solution {
     pub fn min_sub_array_len(target: i32, nums: Vec<i32>) -> i32 {
-        let mut v = Vec::with_capacity(1 + nums.len());
-        v.push(0);
-        let mut sum = 0;
-        for i in nums.iter() {
-            sum += *i;
-            v.push(sum);
-        }
-        println!("{:?}", v.clone());
-
         let mut min_range = usize::MAX;
+        let mut sum = 0;
+        let mut left = 0;
 
-        for (i, val) in v.iter().enumerate() {
-            let t = target + *val;
-            let index = v
-                .iter()
-                .enumerate()
-                .skip(i)
-                .find(|(_, &x)| x >= t)
-                .map(|v| v.0);
-            match index {
-                Some(val) => {
-                    let range = val - i;
-                    dbg!(t, val, range);
-                    min_range = if min_range < range { min_range } else { range };
-                }
-                None => {}
+        for right in 0..nums.len() {
+            sum += nums[right];
+            // for each position(left or right), the satisfied range is unique
+            // if [left,right] satisfied the requirement, then we can safely move left forward
+            // vice versa
+            while sum >= target {
+                sum -= nums[left];
+                min_range = min_range.min(right - left + 1);
+                left += 1;
             }
         }
 
-        if min_range == usize::MAX {
-            0
-        } else {
-            min_range as i32
+        match min_range {
+            usize::MAX => 0,
+            _ => min_range as i32,
         }
     }
 }
