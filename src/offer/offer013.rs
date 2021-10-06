@@ -2,6 +2,7 @@ struct NumMatrix {
     pub inner: Vec<Vec<i32>>,
 }
 
+#[allow(dead_code)]
 impl NumMatrix {
     fn new(matrix: Vec<Vec<i32>>) -> Self {
         let num_row = matrix.len();
