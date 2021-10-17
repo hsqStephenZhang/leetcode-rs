@@ -1,0 +1,4 @@
+/target
+.history/**
+.vscode/**
+Cargo.lock
