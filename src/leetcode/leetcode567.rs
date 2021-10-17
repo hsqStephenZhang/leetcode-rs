@@ -63,9 +63,9 @@ type Item = Option<i32>;
 
 impl Solution2 {
     pub fn check_inclusion(s1: String, s2: String) -> bool {
-        let n=s1.len();
+        let n = s1.len();
         let mut m: [Item; 26] = [None; 26];
-        let mut total=0;
+        let mut total = 0;
         for &c in s1.as_bytes().iter() {
             let index = idx(c);
             match m[index] {
@@ -93,19 +93,19 @@ impl Solution2 {
 
         for (i, &c) in s2.as_bytes().iter().enumerate().skip(n) {
             let prev_c = s2.as_bytes()[i - n];
-            let index1=idx(c);
-            let index2=idx(prev_c);
+            let index1 = idx(c);
+            let index2 = idx(prev_c);
             if let Some(val) = m[index1] {
                 if val == 1 {
                     total -= 1;
                 }
-                m[index1]=Some(val-1);
+                m[index1] = Some(val - 1);
             }
             if let Some(val) = m[index2] {
                 if val == 0 {
                     total += 1;
                 }
-                m[index2]=Some(val+1);
+                m[index2] = Some(val + 1);
             }
             if total == 0 {
                 return true;

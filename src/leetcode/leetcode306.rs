@@ -12,7 +12,7 @@ impl Solution {
         let size = s.len();
         let mut left = 1;
         let mut right = left;
-        dbg!(left,right);
+        dbg!(left, right);
         while left <= size - 2 {
             let first = &s[..left];
             if first.starts_with("0".as_bytes()) && first.len() > 1 {
@@ -97,14 +97,14 @@ impl Solution {
 fn leetcode306_t1() {
     let s = "11111111111011111111111".into();
     let r = Solution::is_additive_number(s);
-    assert_eq!(r,true);
+    assert_eq!(r, true);
 
     let s = "12358".into();
     let r = Solution::is_additive_number(s);
-    assert_eq!(r,true);
+    assert_eq!(r, true);
 
     let s = "113".into();
     let r = Solution::is_additive_number(s);
-    assert_eq!(r,false);
+    assert_eq!(r, false);
     // let r = "11111111111011111111111".parse::<i32>().unwrap();
 }

@@ -13,7 +13,7 @@ impl Solution {
 
         for c in s.as_bytes().into_iter() {
             if visited[(*c - b'a') as usize] == false {
-                let mut top_val=b'a';
+                let mut top_val = b'a';
                 while match stack.last() {
                     None => false,
                     Some(&tmp) => {

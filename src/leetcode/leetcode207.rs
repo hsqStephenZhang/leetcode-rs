@@ -49,15 +49,15 @@ fn leetcode207_t1() {
     let prerequisites = vec![vec![1, 0], vec![0, 1]];
     let num_courses = 2;
     let r = Solution::can_finish(num_courses, prerequisites);
-    assert_eq!(r,false);
+    assert_eq!(r, false);
 
     let prerequisites = vec![vec![0, 1]];
     let num_courses = 2;
     let r = Solution::can_finish(num_courses, prerequisites);
-    assert_eq!(r,true);
+    assert_eq!(r, true);
 
     let prerequisites = vec![vec![1, 4], vec![2, 4], vec![3, 1], vec![3, 2]];
     let num_courses = 5;
     let r = Solution::can_finish(num_courses, prerequisites);
-    assert_eq!(r,true);
+    assert_eq!(r, true);
 }

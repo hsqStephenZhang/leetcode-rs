@@ -5,7 +5,7 @@ use std::collections::BTreeSet;
 impl Solution {
     pub fn contains_nearby_almost_duplicate(nums: Vec<i32>, k: i32, t: i32) -> bool {
         let k = k as usize;
-        let t=t as i64;
+        let t = t as i64;
         let mut tree = BTreeSet::new();
 
         for i in 0..nums.len() {
@@ -49,12 +49,12 @@ fn leetcode220_t1() {
 }
 
 #[test]
-fn ttt(){
-    let mut a=BTreeSet::new();
-    for i in 0..10{
+fn ttt() {
+    let mut a = BTreeSet::new();
+    for i in 0..10 {
         a.insert(i);
     }
-    let l=a.range(..=&2);
-    let r=a.range(&5..);
-    dbg!(l,r);
+    let l = a.range(..=&2);
+    let r = a.range(&5..);
+    dbg!(l, r);
 }

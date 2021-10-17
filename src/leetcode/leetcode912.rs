@@ -2,20 +2,20 @@ struct Solution;
 
 impl Solution {
     pub fn sort_array(nums: Vec<i32>) -> Vec<i32> {
-        let mut nums =nums;
+        let mut nums = nums;
         Self::inner(&mut nums[..]);
         nums
     }
 
-    fn inner(nums:&mut [i32]){
+    fn inner(nums: &mut [i32]) {
         let mid = nums.len() >> 1;
         if mid == 0 {
-            return ;
+            return;
         }
         Self::inner(&mut nums[..mid]);
         Self::inner(&mut nums[mid..]);
 
-        let mut ret=nums.to_vec();
+        let mut ret = nums.to_vec();
         Self::merge(&nums[0..mid], &nums[mid..], &mut ret[..]);
         nums.copy_from_slice(&ret[..]);
     }
@@ -60,8 +60,8 @@ struct Solution2;
 
 impl Solution2 {
     pub fn sort_array(mut nums: Vec<i32>) -> Vec<i32> {
-       nums.sort_unstable();
-       nums
+        nums.sort_unstable();
+        nums
     }
 }
 

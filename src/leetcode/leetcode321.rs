@@ -95,7 +95,7 @@ fn leetcode321_t1() {
     // let r = Solution::max_number(nums1, nums2, k);
     // println!("{:?}", r);
 
-    let nums1 = vec![8,1,8,8,6];
+    let nums1 = vec![8, 1, 8, 8, 6];
     let nums2 = vec![4];
     let k = 2;
     let r = Solution::max_number(nums1, nums2, k);
