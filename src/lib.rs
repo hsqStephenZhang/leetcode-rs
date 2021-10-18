@@ -1,6 +1,6 @@
 pub mod utils;
 
-#[allow(dead_code)]
+#[allow(dead_code, unused_variables)]
 pub mod leetcode;
 
 #[allow(dead_code)]
@@ -22,4 +22,13 @@ pub mod categories {
     pub mod hash {}
 
     pub mod stack {}
+
+    pub mod backtrace {
+        pub use crate::leetcode::leetcode39;
+        pub use crate::leetcode::leetcode40;
+        pub use crate::leetcode::leetcode46;
+        pub use crate::leetcode::leetcode47;
+        pub use crate::leetcode::leetcode77;
+        pub use crate::leetcode::leetcode78;
+    }
 }
