@@ -1,10 +1,13 @@
 pub mod utils;
 
-#[allow(dead_code, unused_variables)]
+#[allow(dead_code, unused_variables, unused_mut)]
 pub mod leetcode;
 
-#[allow(dead_code)]
+#[allow(dead_code, unused_variables, unused_mut)]
 pub mod offer;
+
+#[allow(dead_code, unused_variables, unused_mut)]
+pub mod offer2;
 
 pub mod categories {
     pub mod topology {

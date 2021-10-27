@@ -27,9 +27,9 @@ impl Solution {
         let n = matrix.len() as i32;
         let m = matrix[0].len() as i32;
         dp[row][col] += 1;
-        let steps = [[0, 1], [0, -1], [1, 0], [-1, 0]];
+        const STEPS: [[i32; 2]; 4] = [[0, 1], [0, -1], [1, 0], [-1, 0]];
 
-        for step in steps {
+        for step in STEPS {
             let i = row as i32 + step[0];
             let j = col as i32 + step[1];
             if i >= 0
