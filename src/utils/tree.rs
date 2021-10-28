@@ -2,6 +2,44 @@ use std::cell::RefCell;
 use std::collections::VecDeque;
 use std::rc::Rc;
 
+pub trait NullNode {
+    fn is_null(&self) -> bool;
+}
+
+impl NullNode for i32 {
+    fn is_null(&self) -> bool {
+        return self.eq(&-1);
+    }
+}
+
+pub struct OptionVec<T> {
+    inner: Vec<Option<T>>,
+}
+
+impl<T> OptionVec<T>
+where
+    T: NullNode,
+{
+    #[inline]
+    pub fn new(v: Vec<T>) -> Self {
+        let inner = v
+            .into_iter()
+            .map(|v| if v.is_null() { None } else { Some(v) })
+            .collect();
+        Self { inner }
+    }
+}
+
+impl<T> From<Vec<T>> for OptionVec<T>
+where
+    T: NullNode,
+{
+    #[inline]
+    fn from(v: Vec<T>) -> Self {
+        Self::new(v)
+    }
+}
+
 #[derive(Debug, PartialEq, Eq, Clone)]
 pub struct TreeNode {
     pub val: i32,
@@ -19,6 +57,7 @@ impl TreeNode {
         }
     }
 
+    #[inline]
     pub fn with_child(
         val: i32,
         left: Option<Rc<RefCell<TreeNode>>>,
@@ -75,8 +114,13 @@ impl TreeNode {
         };
     }
 
-    pub fn to_graphviz(&self,title:&str)->String{
-        let mut a = format!("digraph {} ",title);
+    #[inline]
+    pub fn from_vec(v: OptionVec<i32>) -> Option<Rc<RefCell<Self>>> {
+        Self::from_arr(v.inner.as_slice())
+    }
+
+    pub fn to_graphviz(&self, title: &str) -> String {
+        let mut a = format!("digraph {} ", title);
         a.push_str("{");
 
         // bfs traverse
@@ -84,5 +128,4 @@ impl TreeNode {
         a.push_str("}");
         a
     }
-
 }
