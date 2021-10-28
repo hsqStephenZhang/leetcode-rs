@@ -40,7 +40,6 @@ where
     }
 }
 
-#[derive(Debug, PartialEq, Eq, Clone)]
 pub struct TreeNode {
     pub val: i32,
     pub left: Option<Rc<RefCell<TreeNode>>>,
@@ -57,7 +56,6 @@ impl TreeNode {
         }
     }
 
-    #[inline]
     pub fn with_child(
         val: i32,
         left: Option<Rc<RefCell<TreeNode>>>,
