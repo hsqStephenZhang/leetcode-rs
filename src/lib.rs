@@ -1,12 +1,32 @@
+#![feature(map_first_last)]
+
 pub mod utils;
 
-#[allow(dead_code, unused_variables, unused_mut)]
+#[allow(
+    dead_code,
+    unused_variables,
+    unused_mut,
+    unreachable_code,
+    unused_imports
+)]
 pub mod leetcode;
 
-#[allow(dead_code, unused_variables, unused_mut)]
+#[allow(
+    dead_code,
+    unused_variables,
+    unused_mut,
+    unreachable_code,
+    unused_imports
+)]
 pub mod offer;
 
-#[allow(dead_code, unused_variables, unused_mut)]
+#[allow(
+    dead_code,
+    unused_variables,
+    unused_mut,
+    unreachable_code,
+    unused_imports
+)]
 pub mod offer2;
 
 pub mod categories {

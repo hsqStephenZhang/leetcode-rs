@@ -77,21 +77,14 @@ impl Solution2 {
             let left = Self::inner(r.borrow().left.clone(), val1, val2);
             let right = Self::inner(r.borrow().right.clone(), val1, val2);
             return match (left, right) {
-                (None, None) => {
-                    None
-                }
-                (Some(t), None) | (None, Some(t)) => {
-                    Some(t)
-                }
-                (Some(t1), Some(t2)) => {
-                    Some(r)
-                }
-            }
+                (None, None) => None,
+                (Some(t), None) | (None, Some(t)) => Some(t),
+                (Some(t1), Some(t2)) => Some(r),
+            };
         }
         None
     }
 }
-
 
 #[test]
 fn leetcode() {
