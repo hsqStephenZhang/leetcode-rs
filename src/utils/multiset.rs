@@ -8,23 +8,34 @@ pub struct MultiSet<K> {
     len: usize,
 }
 
-impl<K> Default for MultiSet<K> where K: Ord {
+impl<K> Default for MultiSet<K>
+where
+    K: Ord,
+{
     fn default() -> Self {
         Self::new()
     }
 }
 
 impl<K> std::fmt::Debug for MultiSet<K>
-    where
-        K: std::fmt::Debug,
+where
+    K: std::fmt::Debug,
 {
     fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
-        write!(f, "len:{},content:{:?}", self.len, self.inner.iter().map(|v| v.0).collect::<Vec<&K>>())
+        write!(
+            f,
+            "len:{},content:{:?}",
+            self.len,
+            self.inner.iter().map(|v| v.0).collect::<Vec<&K>>()
+        )
     }
 }
 
 // #[allow(mutable_borrow_reservation_conflict)]
-impl<K> MultiSet<K> where K: Ord {
+impl<K> MultiSet<K>
+where
+    K: Ord,
+{
     pub fn new() -> Self {
         Self {
             inner: BTreeMap::new(),
@@ -37,8 +48,7 @@ impl<K> MultiSet<K> where K: Ord {
         self.len
     }
 
-    pub fn from_vec(slice: Vec<K>) -> Self
-    {
+    pub fn from_vec(slice: Vec<K>) -> Self {
         let mut s = Self::new();
         for key in slice {
             s.insert(key);
@@ -47,8 +57,8 @@ impl<K> MultiSet<K> where K: Ord {
     }
 
     pub fn from_slice(slice: &[K]) -> Self
-        where
-            K: Ord + Clone,
+    where
+        K: Ord + Clone,
     {
         let mut s = Self::new();
         for key in slice {
@@ -57,8 +67,7 @@ impl<K> MultiSet<K> where K: Ord {
         s
     }
 
-    pub fn insert(&mut self, key: K)
-    {
+    pub fn insert(&mut self, key: K) {
         if let Some(cnt) = self.inner.get_mut(&key) {
             *cnt += 1;
         } else {
@@ -67,8 +76,7 @@ impl<K> MultiSet<K> where K: Ord {
         self.len += 1;
     }
 
-    pub fn remove(&mut self, key: &K)
-    {
+    pub fn remove(&mut self, key: &K) {
         enum RemoveOption {
             Remove,
             Dec,
@@ -97,8 +105,7 @@ impl<K> MultiSet<K> where K: Ord {
         };
     }
 
-    pub fn peek(&self) -> Option<&K>
-    {
+    pub fn peek(&self) -> Option<&K> {
         if let Some((a, _)) = self.inner.first_key_value() {
             return Some(a);
         }
@@ -106,8 +113,8 @@ impl<K> MultiSet<K> where K: Ord {
     }
 
     pub fn pop(&mut self) -> Option<K>
-        where
-            K: Ord + Clone,
+    where
+        K: Ord + Clone,
     {
         if let Some((a, _)) = self.inner.first_key_value() {
             let a = a.clone();

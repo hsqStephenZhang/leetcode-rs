@@ -33,7 +33,12 @@ struct Window {
 
 impl Debug for Window {
     fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
-        write!(f, "big:{:?} small:{:?}", self.big.clone(), self.small.clone())
+        write!(
+            f,
+            "big:{:?} small:{:?}",
+            self.big.clone(),
+            self.small.clone()
+        )
     }
 }
 
