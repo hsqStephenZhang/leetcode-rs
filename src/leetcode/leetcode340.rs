@@ -46,6 +46,6 @@ impl Solution {
 #[test]
 fn leetcode340_t1() {
     let s = String::from("abccddeeff");
-    let r = Solution::length_of_longest_substring_k_distinct(s,3);
+    let r = Solution::length_of_longest_substring_k_distinct(s, 3);
     println!("{:?}", r);
 }

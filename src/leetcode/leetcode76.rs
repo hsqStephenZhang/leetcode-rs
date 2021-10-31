@@ -2,20 +2,24 @@ struct Solution;
 
 impl Solution {
     pub fn min_window(s: String, t: String) -> String {
-        if s.is_empty() || s.len() < t.len() { return "".to_string(); }
-        let char_to_u8 = |x: char| { ((x as u32) & 0xff) as u8 };
+        if s.is_empty() || s.len() < t.len() {
+            return "".to_string();
+        }
+        let char_to_u8 = |x: char| ((x as u32) & 0xff) as u8;
 
         const LEN: usize = 256;
         let (mut current, mut target) = ([0; LEN], [0; LEN]);
 
-        t.chars().for_each(|x| { target[char_to_u8(x) as usize] += 1; });
+        t.chars().for_each(|x| {
+            target[char_to_u8(x) as usize] += 1;
+        });
         let (mut min_width, mut min_start, mut wnd_start, mut appeared) = (i32::MAX, 0, 0, 0);
 
-        let ss: Vec<usize> = s.chars().map(|x| { (x as u32) as usize }).collect();
+        let ss: Vec<usize> = s.chars().map(|x| (x as u32) as usize).collect();
         let mut itr = ss.iter().enumerate();
 
         while let Some((index, &tp)) = itr.next() {
-            let index = *x.1;
+            let index = tp;
             if target[index] > 0 {
                 current[index] += 1;
                 if current[index] <= target[index] {
@@ -43,7 +47,14 @@ impl Solution {
             }
         }
 
-        if min_width == std::i32::MAX { "".to_string() } else { s.chars().skip(min_start as usize).take(min_width as usize).collect() }
+        if min_width == std::i32::MAX {
+            "".to_string()
+        } else {
+            s.chars()
+                .skip(min_start as usize)
+                .take(min_width as usize)
+                .collect()
+        }
     }
 }
 
