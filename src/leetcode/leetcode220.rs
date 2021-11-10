@@ -56,5 +56,4 @@ fn ttt() {
     }
     let l = a.range(..=&2);
     let r = a.range(&5..);
-    dbg!(l, r);
 }

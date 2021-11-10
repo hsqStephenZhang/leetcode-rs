@@ -33,11 +33,7 @@ impl Solution {
                 break;
             }
         }
-        return if min_range == i32::MAX {
-            0
-        } else {
-            min_range
-        };
+        return if min_range == i32::MAX { 0 } else { min_range };
     }
 }
 

@@ -10,7 +10,14 @@ impl Solution {
         res
     }
 
-    fn backtrace(k: usize, index: usize, left: i32, path: &mut Vec<i32>, used: &mut Vec<bool>, res: &mut Vec<Vec<i32>>) {
+    fn backtrace(
+        k: usize,
+        index: usize,
+        left: i32,
+        path: &mut Vec<i32>,
+        used: &mut Vec<bool>,
+        res: &mut Vec<Vec<i32>>,
+    ) {
         if left < 0 {
             return;
         }
@@ -30,8 +37,7 @@ impl Solution {
 
             // 1. not used
             // 2. prune
-            if (k - index) * start <= left as usize && (left as usize) <= (k - index) * 9
-            {
+            if (k - index) * start <= left as usize && (left as usize) <= (k - index) * 9 {
                 used[i] = true;
                 path.push(i as i32);
                 Self::backtrace(k, index + 1, left - i as i32, path, used, res);

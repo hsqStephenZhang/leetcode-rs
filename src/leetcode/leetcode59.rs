@@ -38,8 +38,8 @@ impl Solution {
 
             if offset >= 2 {
                 offset -= 2;
-                startx+=1;
-                starty+=1;
+                startx += 1;
+                starty += 1;
             }
         }
         if n % 2 == 1 {

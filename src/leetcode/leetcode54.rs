@@ -63,24 +63,28 @@ impl Solution {
 #[test]
 fn leetcode54_t1() {
     let matrix = vec![
-        vec![1, 2, 3, 4], vec![5, 6, 7, 8], vec![9, 10, 11, 12], // [1,2,3,4,8,12,11,10,9,5,6,7]
+        vec![1, 2, 3, 4],
+        vec![5, 6, 7, 8],
+        vec![9, 10, 11, 12], // [1,2,3,4,8,12,11,10,9,5,6,7]
     ];
 
     let r = Solution::spiral_order(matrix);
     println!("{:?}", r);
 
     let matrix = vec![
-        vec![1, 2, 3], vec![4, 5, 6], vec![7, 8, 9], // [1, 2, 3, 6, 9, 8, 7, 4, 5]
+        vec![1, 2, 3],
+        vec![4, 5, 6],
+        vec![7, 8, 9], // [1, 2, 3, 6, 9, 8, 7, 4, 5]
     ];
 
     let r = Solution::spiral_order(matrix);
     println!("{:?}", r);
 
     let matrix = vec![
-        vec![1, 2, 3, 4, 5], vec![6, 7, 8, 9, 10],  // [1, 2, 3, 4, 5, 10, 9, 8, 7, 6]
+        vec![1, 2, 3, 4, 5],
+        vec![6, 7, 8, 9, 10], // [1, 2, 3, 4, 5, 10, 9, 8, 7, 6]
     ];
 
     let r = Solution::spiral_order(matrix);
     println!("{:?}", r);
 }
-
