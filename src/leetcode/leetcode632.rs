@@ -11,10 +11,7 @@ struct Item {
 
 impl Item {
     pub fn new(array_index: usize, val: i32) -> Self {
-        Self {
-            array_index,
-            val,
-        }
+        Self { array_index, val }
     }
 }
 
@@ -45,9 +42,7 @@ struct SortMultiVec {
 impl SortMultiVec {
     pub fn new(vecs: Vec<Vec<i32>>) -> Self {
         debug_assert_eq!(None, vecs.iter().find(|v| v.len() == 0));
-        Self {
-            vecs
-        }
+        Self { vecs }
     }
 
     pub fn sort(self) -> Vec<Item> {
@@ -81,7 +76,10 @@ impl Solution {
         }
         impl R {
             pub fn new(left_val: i32, right_val: i32) -> Self {
-                Self { left_val, right_val }
+                Self {
+                    left_val,
+                    right_val,
+                }
             }
 
             pub fn update(&mut self, left_val: i32, right_val: i32) {
@@ -101,7 +99,14 @@ impl Solution {
 
         // window
         let mut l = 0;
-        for (r, &Item { array_index, val: current_val }) in sorted_items.iter().enumerate() {
+        for (
+            r,
+            &Item {
+                array_index,
+                val: current_val,
+            },
+        ) in sorted_items.iter().enumerate()
+        {
             array_cnt[array_index] += 1;
             if array_cnt[array_index] == 1 {
                 total += 1;
@@ -111,7 +116,10 @@ impl Solution {
                 res.update(sorted_items[l].val, current_val);
                 // update
                 while l < r {
-                    let &Item { array_index: l_array_index, val: _ } = &sorted_items[l];
+                    let &Item {
+                        array_index: l_array_index,
+                        val: _,
+                    } = &sorted_items[l];
                     array_cnt[l_array_index] -= 1;
                     l += 1;
                     // 如果删除了 l 位置上的元素，仍然满足要求，就通过 l+1 位置上的元素来更新 res
@@ -133,7 +141,9 @@ impl Solution {
 fn leetcode632() {
     // [0, 4, 5, 9, 10, 12, 15, 18, 20, 22, 24, 26, 30]
     let nums = vec![
-        vec![4, 10, 15, 24, 26], vec![0, 9, 12, 20], vec![5, 18, 22, 30],
+        vec![4, 10, 15, 24, 26],
+        vec![0, 9, 12, 20],
+        vec![5, 18, 22, 30],
     ];
     // let nums=vec![vec![10,10],vec![11,11]];
     // let nums = vec![vec![1], vec![2], vec![3], vec![4], vec![5], vec![6]];

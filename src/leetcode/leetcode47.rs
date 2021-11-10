@@ -1,35 +1,19 @@
 struct Solution;
 
 impl Solution {
-    /*
-    [1,1,2]
-
-    1,1,2
-    1,2,1
-    1,1,2 x
-    1,2,1 x
-    2,1,1
-    2,1,1 x
-
-    [1,1]
-    1,1
-    1,1   x
-    */
-
     pub fn permute_unique(nums: Vec<i32>) -> Vec<Vec<i32>> {
         let mut nums = nums;
         nums.sort();
-
+        let mut res = Vec::with_capacity(8);
         let mut path = Vec::with_capacity(nums.len());
         let mut used = vec![false; nums.len()];
-        let mut res = vec![];
-        Self::backtrace(&mut path, &mut nums, &mut used, &mut res);
+        Self::backtrace(&nums, &mut path, &mut used, &mut res);
         res
     }
 
-    fn backtrace(
+    pub fn backtrace(
+        nums: &Vec<i32>,
         path: &mut Vec<i32>,
-        nums: &mut Vec<i32>,
         used: &mut Vec<bool>,
         res: &mut Vec<Vec<i32>>,
     ) {
@@ -37,15 +21,19 @@ impl Solution {
             res.push(path.clone());
             return;
         }
+
         for i in 0..nums.len() {
-            if used[i] == true || (i > 0 && nums[i] == nums[i - 1] && used[i - 1] == false) {
+            if i > 0 && nums[i] == nums[i - 1] && used[i - 1] == false {
                 continue;
             }
-            used[i] = true;
-            path.push(nums[i]);
-            Self::backtrace(path, nums, used, res);
-            path.pop();
-            used[i] = false;
+
+            if used[i] == false {
+                used[i] = true;
+                path.push(nums[i]);
+                Self::backtrace(nums, path, used, res);
+                path.pop();
+                used[i] = false;
+            }
         }
     }
 }

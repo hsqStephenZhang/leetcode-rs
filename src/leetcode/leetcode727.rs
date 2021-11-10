@@ -30,7 +30,12 @@ impl Solution {
 
         let mut res = Result::new();
 
-        let starts = s1.iter().enumerate().filter(|&(_, &c)| c == s2[0]).map(|(index, _)| index).collect::<Vec<usize>>();
+        let starts = s1
+            .iter()
+            .enumerate()
+            .filter(|&(_, &c)| c == s2[0])
+            .map(|(index, _)| index)
+            .collect::<Vec<usize>>();
         for start in starts {
             let iter = s1.iter().enumerate().skip(start);
             let mut count = [0; 256];
