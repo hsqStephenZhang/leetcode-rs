@@ -47,6 +47,7 @@ pub mod categories {
     pub mod stack {}
 
     pub mod backtrace {
+        pub use crate::leetcode::leetcode131;
         pub use crate::leetcode::leetcode216;
         pub use crate::leetcode::leetcode39;
         pub use crate::leetcode::leetcode40;
