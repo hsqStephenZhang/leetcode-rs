@@ -1,6 +1,8 @@
-use std::cmp::Reverse;
 use std::collections::BTreeMap;
 use std::fmt::Formatter;
+#[allow(unused_imports)]
+#[allow(dead_code)]
+use std::cmp::Reverse;
 
 #[derive(Clone)]
 pub struct MultiSet<K> {
