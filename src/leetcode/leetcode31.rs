@@ -32,7 +32,6 @@ the dictionary order is a search tree
 
 */
 impl Solution {
-    #[allow(unused_assignments)]
     pub fn next_permutation(nums: &mut Vec<i32>) {
         let n = nums.len();
         let mut index = n as i32 - 2;

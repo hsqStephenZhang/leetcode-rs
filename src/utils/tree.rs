@@ -40,7 +40,7 @@ where
     }
 }
 
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, PartialEq, Eq)]
 pub struct TreeNode {
     pub val: i32,
     pub left: Option<Rc<RefCell<TreeNode>>>,
@@ -86,7 +86,6 @@ impl TreeNode {
     ///
     /// ```rust
     /// let v = &[Some(1), None, Some(2), Some(3)];
-    /// assert_eq!(1, 1);
     /// ```
     pub fn from_arr(v: &[Option<i32>]) -> Option<Rc<RefCell<Self>>> {
         return if v.len() == 0 {
@@ -116,6 +115,55 @@ impl TreeNode {
     #[inline]
     pub fn from_vec(v: OptionVec<i32>) -> Option<Rc<RefCell<Self>>> {
         Self::from_arr(v.inner.as_slice())
+    }
+
+    pub fn inverse_traverse(&self) {
+        let mut root = Some(Rc::new(RefCell::new(self.clone())));
+        let mut stack = Vec::new();
+        while !stack.is_empty() || root.is_some() {
+            while let Some(r) = root {
+                stack.push(r.clone());
+                root = r.borrow().left.clone();
+            }
+            let cur = stack.pop().unwrap();
+            print!("{} ", cur.borrow().val);
+            root = cur.borrow().right.clone();
+        }
+    }
+
+    pub fn morris_traverse(&self) {
+        let mut node = Some(Rc::new(RefCell::new(self.clone())));
+        let mut prev;
+        while let Some(n) = node.clone() {
+            match n.borrow().left.clone() {
+                Some(l) => {
+                    prev = Some(l);
+                    while let Some(p) = prev.clone() {
+                        if let Some(r) = p.borrow().right.clone() {
+                            if r != n {
+                                prev = p.borrow().right.clone();
+                                continue;
+                            }
+                        }
+                        break;
+                    }
+                    // there must be one previous node
+                    let p = prev.unwrap();
+                    if p.borrow().right.is_none() {
+                        p.borrow_mut().right = node;
+                        node = n.borrow().left.clone();
+                    } else {
+                        print!("{} ", n.borrow().val);
+                        p.borrow_mut().right = None;
+                        node = n.borrow().right.clone();
+                    }
+                }
+                None => {
+                    print!("{} ", n.borrow().val);
+                    node = n.borrow().right.clone();
+                }
+            }
+        }
     }
 
     pub fn to_graphviz(&self, title: &str) -> String {

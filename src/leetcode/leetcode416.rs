@@ -1,6 +1,5 @@
 struct Solution;
 
-#[allow(warnings)]
 impl Solution {
     pub fn can_partition(nums: Vec<i32>) -> bool {
         let sum: i32 = nums.iter().sum();

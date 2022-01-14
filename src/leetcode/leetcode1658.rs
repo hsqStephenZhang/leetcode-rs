@@ -40,7 +40,6 @@ impl Solution {
         };
     }
 
-    #[allow(dead_code)]
     fn to_sum(nums: Vec<i32>) -> (Vec<i32>, i32) {
         let mut res = Vec::with_capacity(nums.len() + 1);
         let mut sum = 0;
