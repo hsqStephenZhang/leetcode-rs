@@ -16,8 +16,18 @@ impl Solution {
         res
     }
 }
+struct Solution2;
+
+// left,right,sum
+impl Solution2 {
+    pub fn max_sub_array(nums: Vec<i32>) -> i32 {
+        todo!()
+    }
+}
 
 #[test]
 fn leetcode53_t1() {
-    todo!()
+    let nums = vec![-2, 1, -3, 4, -1, 2, 1, -5, 4];
+    let r = Solution::max_sub_array(nums);
+    dbg!(r);
 }
