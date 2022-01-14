@@ -92,5 +92,7 @@ pub mod leetcode912;
 pub mod leetcode93;
 pub mod leetcode930;
 pub mod leetcode94;
+pub mod leetcode95;
+pub mod leetcode96;
 pub mod leetcode98;
 pub mod leetcode99;

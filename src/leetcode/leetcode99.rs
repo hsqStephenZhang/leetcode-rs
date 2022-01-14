@@ -58,7 +58,7 @@ impl Solution {
 fn leetcode99_t1() {
     // let mut root = TreeNode::from_vec(OptionVec::new(vec![1, 3, -1, -1, 2]));
     let mut root = TreeNode::from_vec(OptionVec::new(vec![3, 1, 4, -1, -1, 2]));
-    root.unwrap().borrow().morris_traverse();
+    root.unwrap().borrow().morris_inverse_traverse();
     // dbg!(root);
     // Solution::recover_tree(&mut root);
     // dbg!(root);

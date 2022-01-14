@@ -131,7 +131,7 @@ impl TreeNode {
         }
     }
 
-    pub fn morris_traverse(&self) {
+    pub fn morris_inverse_traverse(&self) {
         let mut node = Some(Rc::new(RefCell::new(self.clone())));
         let mut prev;
         while let Some(n) = node.clone() {
